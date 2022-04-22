@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Event Listeners</title>
+</head>
+
+<body>
+  <ul id="fruits">
+    <li id="apple">apple</li>
+    <li id="banana">banana</li>
+    <li id="mango">mango</li>
+    <li id="strawberry">strawberry</li>
+  </ul>
+  <script>
+    const fruits = document.querySelector('#fruits')
+
+    fruits.addEventListener('click', (e) => {
+      console.log(`${e.target.getAttribute('id')} is clicked!`)
+      console.log(e.target)
+      if (e.target.matches('li')) {
+        e.target.classList.toggle('backgroundColor') // add if don't exist， remove if exist
+      }
+    })
+
+    function Particle(x, y) {
+      this.x = x
+      this.y = y
+      // this.show = function () {
+      //   console.log(this.x, this.y)
+      // }
+    }
+
+    Particle.prototype.show = function () {
+      console.log(this.x, this.y)
+    }
+
+    function Coffee(x, y, z) {
+      this.z = z
+      Particle.call(this, x, y)
+    }
+
+
+
+    Coffee.prototype = Particle.prototype
+    Coffee.prototype.constructor = Coffee
+    Coffee.prototype.showThree = function () {
+      console.log(this.x, this.y, this.z)
+    }
+
+
+
+    const p = new Particle(10, 20)
+    const p2 = new Particle(20, 30)
+    const c = new Coffee(10, 20, 30)
+
+    console.log(Particle.prototype)
+    console.log(p2.show())
+
+
+  </script>
+</body>
+
+</html>
